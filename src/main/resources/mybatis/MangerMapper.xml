@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.MangerMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Manger">
+    <id column="manger_id" jdbcType="INTEGER" property="mangerId" />
+    <result column="man_name" jdbcType="VARCHAR" property="manName" />
+    <result column="man_realname" jdbcType="VARCHAR" property="manRealname" />
+    <result column="man_pass" jdbcType="VARCHAR" property="manPass" />
+    <result column="man_sex" jdbcType="VARCHAR" property="manSex" />
+    <result column="man_bir" jdbcType="TIMESTAMP" property="manBir" />
+    <result column="man_phone" jdbcType="VARCHAR" property="manPhone" />
+    <result column="man_address" jdbcType="VARCHAR" property="manAddress" />
+    <result column="ctime" jdbcType="DATE" property="ctime" />
+    <result column="orders" jdbcType="VARCHAR" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    manger_id, man_name, man_realname, man_pass, man_sex, man_bir, man_phone, man_address, 
+    ctime, orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_manger
+    where manger_id = #{mangerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_manger
+    where manger_id = #{mangerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Manger">
+    insert into hbms_manger (manger_id, man_name, man_realname, 
+      man_pass, man_sex, man_bir, 
+      man_phone, man_address, ctime, 
+      orders)
+    values (#{mangerId,jdbcType=INTEGER}, #{manName,jdbcType=VARCHAR}, #{manRealname,jdbcType=VARCHAR}, 
+      #{manPass,jdbcType=VARCHAR}, #{manSex,jdbcType=VARCHAR}, #{manBir,jdbcType=TIMESTAMP}, 
+      #{manPhone,jdbcType=VARCHAR}, #{manAddress,jdbcType=VARCHAR}, #{ctime,jdbcType=DATE}, 
+      #{orders,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Manger">
+    insert into hbms_manger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mangerId != null">
+        manger_id,
+      </if>
+      <if test="manName != null">
+        man_name,
+      </if>
+      <if test="manRealname != null">
+        man_realname,
+      </if>
+      <if test="manPass != null">
+        man_pass,
+      </if>
+      <if test="manSex != null">
+        man_sex,
+      </if>
+      <if test="manBir != null">
+        man_bir,
+      </if>
+      <if test="manPhone != null">
+        man_phone,
+      </if>
+      <if test="manAddress != null">
+        man_address,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mangerId != null">
+        #{mangerId,jdbcType=INTEGER},
+      </if>
+      <if test="manName != null">
+        #{manName,jdbcType=VARCHAR},
+      </if>
+      <if test="manRealname != null">
+        #{manRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="manPass != null">
+        #{manPass,jdbcType=VARCHAR},
+      </if>
+      <if test="manSex != null">
+        #{manSex,jdbcType=VARCHAR},
+      </if>
+      <if test="manBir != null">
+        #{manBir,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manPhone != null">
+        #{manPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="manAddress != null">
+        #{manAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=DATE},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Manger">
+    update hbms_manger
+    <set>
+      <if test="manName != null">
+        man_name = #{manName,jdbcType=VARCHAR},
+      </if>
+      <if test="manRealname != null">
+        man_realname = #{manRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="manPass != null">
+        man_pass = #{manPass,jdbcType=VARCHAR},
+      </if>
+      <if test="manSex != null">
+        man_sex = #{manSex,jdbcType=VARCHAR},
+      </if>
+      <if test="manBir != null">
+        man_bir = #{manBir,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manPhone != null">
+        man_phone = #{manPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="manAddress != null">
+        man_address = #{manAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=DATE},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where manger_id = #{mangerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Manger">
+    update hbms_manger
+    set man_name = #{manName,jdbcType=VARCHAR},
+      man_realname = #{manRealname,jdbcType=VARCHAR},
+      man_pass = #{manPass,jdbcType=VARCHAR},
+      man_sex = #{manSex,jdbcType=VARCHAR},
+      man_bir = #{manBir,jdbcType=TIMESTAMP},
+      man_phone = #{manPhone,jdbcType=VARCHAR},
+      man_address = #{manAddress,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=DATE},
+      orders = #{orders,jdbcType=VARCHAR}
+    where manger_id = #{mangerId,jdbcType=INTEGER}
+  </update>
+</mapper>

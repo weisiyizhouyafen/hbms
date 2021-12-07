@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.LevelMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Level">
+    <id column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="level_user_id" jdbcType="INTEGER" property="levelUserId" />
+    <result column="level_update_time" jdbcType="TIMESTAMP" property="levelUpdateTime" />
+    <result column="level_before" jdbcType="INTEGER" property="levelBefore" />
+    <result column="level_after" jdbcType="INTEGER" property="levelAfter" />
+    <result column="level_consumpiton" jdbcType="VARCHAR" property="levelConsumpiton" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    level_id, level_user_id, level_update_time, level_before, level_after, level_consumpiton
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_level
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_level
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Level">
+    insert into hbms_level (level_id, level_user_id, level_update_time, 
+      level_before, level_after, level_consumpiton
+      )
+    values (#{levelId,jdbcType=INTEGER}, #{levelUserId,jdbcType=INTEGER}, #{levelUpdateTime,jdbcType=TIMESTAMP}, 
+      #{levelBefore,jdbcType=INTEGER}, #{levelAfter,jdbcType=INTEGER}, #{levelConsumpiton,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Level">
+    insert into hbms_level
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="levelId != null">
+        level_id,
+      </if>
+      <if test="levelUserId != null">
+        level_user_id,
+      </if>
+      <if test="levelUpdateTime != null">
+        level_update_time,
+      </if>
+      <if test="levelBefore != null">
+        level_before,
+      </if>
+      <if test="levelAfter != null">
+        level_after,
+      </if>
+      <if test="levelConsumpiton != null">
+        level_consumpiton,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="levelId != null">
+        #{levelId,jdbcType=INTEGER},
+      </if>
+      <if test="levelUserId != null">
+        #{levelUserId,jdbcType=INTEGER},
+      </if>
+      <if test="levelUpdateTime != null">
+        #{levelUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelBefore != null">
+        #{levelBefore,jdbcType=INTEGER},
+      </if>
+      <if test="levelAfter != null">
+        #{levelAfter,jdbcType=INTEGER},
+      </if>
+      <if test="levelConsumpiton != null">
+        #{levelConsumpiton,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Level">
+    update hbms_level
+    <set>
+      <if test="levelUserId != null">
+        level_user_id = #{levelUserId,jdbcType=INTEGER},
+      </if>
+      <if test="levelUpdateTime != null">
+        level_update_time = #{levelUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelBefore != null">
+        level_before = #{levelBefore,jdbcType=INTEGER},
+      </if>
+      <if test="levelAfter != null">
+        level_after = #{levelAfter,jdbcType=INTEGER},
+      </if>
+      <if test="levelConsumpiton != null">
+        level_consumpiton = #{levelConsumpiton,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Level">
+    update hbms_level
+    set level_user_id = #{levelUserId,jdbcType=INTEGER},
+      level_update_time = #{levelUpdateTime,jdbcType=TIMESTAMP},
+      level_before = #{levelBefore,jdbcType=INTEGER},
+      level_after = #{levelAfter,jdbcType=INTEGER},
+      level_consumpiton = #{levelConsumpiton,jdbcType=VARCHAR}
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </update>
+</mapper>

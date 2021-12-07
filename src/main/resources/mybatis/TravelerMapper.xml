@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.TravelerMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Traveler">
+    <id column="traveler_id" jdbcType="INTEGER" property="travelerId" />
+    <result column="tra_strtime" jdbcType="TIMESTAMP" property="traStrtime" />
+    <result column="tra_endtime" jdbcType="TIMESTAMP" property="traEndtime" />
+    <result column="tra_his" jdbcType="INTEGER" property="traHis" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    traveler_id, tra_strtime, tra_endtime, tra_his
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_traveler
+    where traveler_id = #{travelerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_traveler
+    where traveler_id = #{travelerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Traveler">
+    insert into hbms_traveler (traveler_id, tra_strtime, tra_endtime, 
+      tra_his)
+    values (#{travelerId,jdbcType=INTEGER}, #{traStrtime,jdbcType=TIMESTAMP}, #{traEndtime,jdbcType=TIMESTAMP}, 
+      #{traHis,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Traveler">
+    insert into hbms_traveler
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="travelerId != null">
+        traveler_id,
+      </if>
+      <if test="traStrtime != null">
+        tra_strtime,
+      </if>
+      <if test="traEndtime != null">
+        tra_endtime,
+      </if>
+      <if test="traHis != null">
+        tra_his,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="travelerId != null">
+        #{travelerId,jdbcType=INTEGER},
+      </if>
+      <if test="traStrtime != null">
+        #{traStrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traEndtime != null">
+        #{traEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traHis != null">
+        #{traHis,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Traveler">
+    update hbms_traveler
+    <set>
+      <if test="traStrtime != null">
+        tra_strtime = #{traStrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traEndtime != null">
+        tra_endtime = #{traEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traHis != null">
+        tra_his = #{traHis,jdbcType=INTEGER},
+      </if>
+    </set>
+    where traveler_id = #{travelerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Traveler">
+    update hbms_traveler
+    set tra_strtime = #{traStrtime,jdbcType=TIMESTAMP},
+      tra_endtime = #{traEndtime,jdbcType=TIMESTAMP},
+      tra_his = #{traHis,jdbcType=INTEGER}
+    where traveler_id = #{travelerId,jdbcType=INTEGER}
+  </update>
+</mapper>

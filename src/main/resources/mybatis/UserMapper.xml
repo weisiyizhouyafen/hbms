@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.User">
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_realname" jdbcType="VARCHAR" property="userRealname" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_bir" jdbcType="DATE" property="userBir" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_sex" jdbcType="BIGINT" property="userSex" />
+    <result column="user_address" jdbcType="VARCHAR" property="userAddress" />
+    <result column="user_deposit" jdbcType="VARCHAR" property="userDeposit" />
+    <result column="user_his" jdbcType="INTEGER" property="userHis" />
+    <result column="user_card" jdbcType="INTEGER" property="userCard" />
+  </resultMap>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.User">
+    insert into hbms_user (user_id, user_name, user_realname, 
+      user_pwd, user_bir, user_phone, 
+      user_sex, user_address, user_deposit, 
+      user_his, user_card)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userRealname,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{userBir,jdbcType=DATE}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=BIGINT}, #{userAddress,jdbcType=VARCHAR}, #{userDeposit,jdbcType=VARCHAR}, 
+      #{userHis,jdbcType=INTEGER}, #{userCard,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.User">
+    insert into hbms_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userRealname != null">
+        user_realname,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="userBir != null">
+        user_bir,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="userDeposit != null">
+        user_deposit,
+      </if>
+      <if test="userHis != null">
+        user_his,
+      </if>
+      <if test="userCard != null">
+        user_card,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null">
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userBir != null">
+        #{userBir,jdbcType=DATE},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=BIGINT},
+      </if>
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userDeposit != null">
+        #{userDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="userHis != null">
+        #{userHis,jdbcType=INTEGER},
+      </if>
+      <if test="userCard != null">
+        #{userCard,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

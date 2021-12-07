@@ -1,0 +1,4 @@
+master:
+  name: master-hbms
+  version: 0.0.2
+  description: 滑冰场管理系统（开发环境）

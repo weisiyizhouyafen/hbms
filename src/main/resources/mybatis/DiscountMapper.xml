@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.DiscountMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Discount">
+    <id column="discount_id" jdbcType="INTEGER" property="discountId" />
+    <result column="dis_mes" jdbcType="VARCHAR" property="disMes" />
+    <result column="dis_release" jdbcType="DATE" property="disRelease" />
+    <result column="dis_deadline" jdbcType="DATE" property="disDeadline" />
+    <result column="dis_sta" jdbcType="VARCHAR" property="disSta" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    discount_id, dis_mes, dis_release, dis_deadline, dis_sta, orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_discount
+    where discount_id = #{discountId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_discount
+    where discount_id = #{discountId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Discount">
+    insert into hbms_discount (discount_id, dis_mes, dis_release, 
+      dis_deadline, dis_sta, orders
+      )
+    values (#{discountId,jdbcType=INTEGER}, #{disMes,jdbcType=VARCHAR}, #{disRelease,jdbcType=DATE}, 
+      #{disDeadline,jdbcType=DATE}, #{disSta,jdbcType=VARCHAR}, #{orders,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Discount">
+    insert into hbms_discount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="discountId != null">
+        discount_id,
+      </if>
+      <if test="disMes != null">
+        dis_mes,
+      </if>
+      <if test="disRelease != null">
+        dis_release,
+      </if>
+      <if test="disDeadline != null">
+        dis_deadline,
+      </if>
+      <if test="disSta != null">
+        dis_sta,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="discountId != null">
+        #{discountId,jdbcType=INTEGER},
+      </if>
+      <if test="disMes != null">
+        #{disMes,jdbcType=VARCHAR},
+      </if>
+      <if test="disRelease != null">
+        #{disRelease,jdbcType=DATE},
+      </if>
+      <if test="disDeadline != null">
+        #{disDeadline,jdbcType=DATE},
+      </if>
+      <if test="disSta != null">
+        #{disSta,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Discount">
+    update hbms_discount
+    <set>
+      <if test="disMes != null">
+        dis_mes = #{disMes,jdbcType=VARCHAR},
+      </if>
+      <if test="disRelease != null">
+        dis_release = #{disRelease,jdbcType=DATE},
+      </if>
+      <if test="disDeadline != null">
+        dis_deadline = #{disDeadline,jdbcType=DATE},
+      </if>
+      <if test="disSta != null">
+        dis_sta = #{disSta,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+    </set>
+    where discount_id = #{discountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Discount">
+    update hbms_discount
+    set dis_mes = #{disMes,jdbcType=VARCHAR},
+      dis_release = #{disRelease,jdbcType=DATE},
+      dis_deadline = #{disDeadline,jdbcType=DATE},
+      dis_sta = #{disSta,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER}
+    where discount_id = #{discountId,jdbcType=INTEGER}
+  </update>
+</mapper>

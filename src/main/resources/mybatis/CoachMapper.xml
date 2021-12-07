@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.CoachMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Coach">
+    <id column="coach_id" jdbcType="INTEGER" property="coachId" />
+    <result column="coa_name" jdbcType="VARCHAR" property="coaName" />
+    <result column="coa_sex" jdbcType="VARCHAR" property="coaSex" />
+    <result column="coa_age" jdbcType="VARCHAR" property="coaAge" />
+    <result column="coa_pho" jdbcType="VARCHAR" property="coaPho" />
+    <result column="coa_mail" jdbcType="VARCHAR" property="coaMail" />
+    <result column="coa_pass" jdbcType="VARCHAR" property="coaPass" />
+    <result column="coa_bir" jdbcType="DATE" property="coaBir" />
+    <result column="coa_work_age" jdbcType="VARCHAR" property="coaWorkAge" />
+    <result column="coa_sta" jdbcType="VARCHAR" property="coaSta" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    coach_id, coa_name, coa_sex, coa_age, coa_pho, coa_mail, coa_pass, coa_bir, coa_work_age, 
+    coa_sta, orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_coach
+    where coach_id = #{coachId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_coach
+    where coach_id = #{coachId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Coach">
+    insert into hbms_coach (coach_id, coa_name, coa_sex, 
+      coa_age, coa_pho, coa_mail, 
+      coa_pass, coa_bir, coa_work_age, 
+      coa_sta, orders)
+    values (#{coachId,jdbcType=INTEGER}, #{coaName,jdbcType=VARCHAR}, #{coaSex,jdbcType=VARCHAR}, 
+      #{coaAge,jdbcType=VARCHAR}, #{coaPho,jdbcType=VARCHAR}, #{coaMail,jdbcType=VARCHAR}, 
+      #{coaPass,jdbcType=VARCHAR}, #{coaBir,jdbcType=DATE}, #{coaWorkAge,jdbcType=VARCHAR}, 
+      #{coaSta,jdbcType=VARCHAR}, #{orders,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Coach">
+    insert into hbms_coach
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coachId != null">
+        coach_id,
+      </if>
+      <if test="coaName != null">
+        coa_name,
+      </if>
+      <if test="coaSex != null">
+        coa_sex,
+      </if>
+      <if test="coaAge != null">
+        coa_age,
+      </if>
+      <if test="coaPho != null">
+        coa_pho,
+      </if>
+      <if test="coaMail != null">
+        coa_mail,
+      </if>
+      <if test="coaPass != null">
+        coa_pass,
+      </if>
+      <if test="coaBir != null">
+        coa_bir,
+      </if>
+      <if test="coaWorkAge != null">
+        coa_work_age,
+      </if>
+      <if test="coaSta != null">
+        coa_sta,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coachId != null">
+        #{coachId,jdbcType=INTEGER},
+      </if>
+      <if test="coaName != null">
+        #{coaName,jdbcType=VARCHAR},
+      </if>
+      <if test="coaSex != null">
+        #{coaSex,jdbcType=VARCHAR},
+      </if>
+      <if test="coaAge != null">
+        #{coaAge,jdbcType=VARCHAR},
+      </if>
+      <if test="coaPho != null">
+        #{coaPho,jdbcType=VARCHAR},
+      </if>
+      <if test="coaMail != null">
+        #{coaMail,jdbcType=VARCHAR},
+      </if>
+      <if test="coaPass != null">
+        #{coaPass,jdbcType=VARCHAR},
+      </if>
+      <if test="coaBir != null">
+        #{coaBir,jdbcType=DATE},
+      </if>
+      <if test="coaWorkAge != null">
+        #{coaWorkAge,jdbcType=VARCHAR},
+      </if>
+      <if test="coaSta != null">
+        #{coaSta,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Coach">
+    update hbms_coach
+    <set>
+      <if test="coaName != null">
+        coa_name = #{coaName,jdbcType=VARCHAR},
+      </if>
+      <if test="coaSex != null">
+        coa_sex = #{coaSex,jdbcType=VARCHAR},
+      </if>
+      <if test="coaAge != null">
+        coa_age = #{coaAge,jdbcType=VARCHAR},
+      </if>
+      <if test="coaPho != null">
+        coa_pho = #{coaPho,jdbcType=VARCHAR},
+      </if>
+      <if test="coaMail != null">
+        coa_mail = #{coaMail,jdbcType=VARCHAR},
+      </if>
+      <if test="coaPass != null">
+        coa_pass = #{coaPass,jdbcType=VARCHAR},
+      </if>
+      <if test="coaBir != null">
+        coa_bir = #{coaBir,jdbcType=DATE},
+      </if>
+      <if test="coaWorkAge != null">
+        coa_work_age = #{coaWorkAge,jdbcType=VARCHAR},
+      </if>
+      <if test="coaSta != null">
+        coa_sta = #{coaSta,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+    </set>
+    where coach_id = #{coachId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Coach">
+    update hbms_coach
+    set coa_name = #{coaName,jdbcType=VARCHAR},
+      coa_sex = #{coaSex,jdbcType=VARCHAR},
+      coa_age = #{coaAge,jdbcType=VARCHAR},
+      coa_pho = #{coaPho,jdbcType=VARCHAR},
+      coa_mail = #{coaMail,jdbcType=VARCHAR},
+      coa_pass = #{coaPass,jdbcType=VARCHAR},
+      coa_bir = #{coaBir,jdbcType=DATE},
+      coa_work_age = #{coaWorkAge,jdbcType=VARCHAR},
+      coa_sta = #{coaSta,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER}
+    where coach_id = #{coachId,jdbcType=INTEGER}
+  </update>
+</mapper>

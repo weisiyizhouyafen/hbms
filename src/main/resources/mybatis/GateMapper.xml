@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.GateMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Gate">
+    <id column="gate_id" jdbcType="INTEGER" property="gateId" />
+    <result column="gat_sta" jdbcType="BIGINT" property="gatSta" />
+    <result column="gat_user_id" jdbcType="INTEGER" property="gatUserId" />
+    <result column="gat_date" jdbcType="TIMESTAMP" property="gatDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gate_id, gat_sta, gat_user_id, gat_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_gate
+    where gate_id = #{gateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_gate
+    where gate_id = #{gateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Gate">
+    insert into hbms_gate (gate_id, gat_sta, gat_user_id, 
+      gat_date)
+    values (#{gateId,jdbcType=INTEGER}, #{gatSta,jdbcType=BIGINT}, #{gatUserId,jdbcType=INTEGER}, 
+      #{gatDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Gate">
+    insert into hbms_gate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gateId != null">
+        gate_id,
+      </if>
+      <if test="gatSta != null">
+        gat_sta,
+      </if>
+      <if test="gatUserId != null">
+        gat_user_id,
+      </if>
+      <if test="gatDate != null">
+        gat_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gateId != null">
+        #{gateId,jdbcType=INTEGER},
+      </if>
+      <if test="gatSta != null">
+        #{gatSta,jdbcType=BIGINT},
+      </if>
+      <if test="gatUserId != null">
+        #{gatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="gatDate != null">
+        #{gatDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Gate">
+    update hbms_gate
+    <set>
+      <if test="gatSta != null">
+        gat_sta = #{gatSta,jdbcType=BIGINT},
+      </if>
+      <if test="gatUserId != null">
+        gat_user_id = #{gatUserId,jdbcType=INTEGER},
+      </if>
+      <if test="gatDate != null">
+        gat_date = #{gatDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gate_id = #{gateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Gate">
+    update hbms_gate
+    set gat_sta = #{gatSta,jdbcType=BIGINT},
+      gat_user_id = #{gatUserId,jdbcType=INTEGER},
+      gat_date = #{gatDate,jdbcType=TIMESTAMP}
+    where gate_id = #{gateId,jdbcType=INTEGER}
+  </update>
+</mapper>

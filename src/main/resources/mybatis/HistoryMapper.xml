@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.HistoryMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.History">
+    <id column="history_id" jdbcType="INTEGER" property="historyId" />
+    <result column="his_date" jdbcType="TIMESTAMP" property="hisDate" />
+    <result column="his_money" jdbcType="VARCHAR" property="hisMoney" />
+    <result column="his_disc" jdbcType="INTEGER" property="hisDisc" />
+    <result column="his_coa_id" jdbcType="INTEGER" property="hisCoaId" />
+    <result column="his_coa_name" jdbcType="VARCHAR" property="hisCoaName" />
+    <result column="his_pro" jdbcType="INTEGER" property="hisPro" />
+    <result column="his_relmony" jdbcType="VARCHAR" property="hisRelmony" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    history_id, his_date, his_money, his_disc, his_coa_id, his_coa_name, his_pro, his_relmony, 
+    orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_history
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_history
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.History">
+    insert into hbms_history (history_id, his_date, his_money, 
+      his_disc, his_coa_id, his_coa_name, 
+      his_pro, his_relmony, orders
+      )
+    values (#{historyId,jdbcType=INTEGER}, #{hisDate,jdbcType=TIMESTAMP}, #{hisMoney,jdbcType=VARCHAR}, 
+      #{hisDisc,jdbcType=INTEGER}, #{hisCoaId,jdbcType=INTEGER}, #{hisCoaName,jdbcType=VARCHAR}, 
+      #{hisPro,jdbcType=INTEGER}, #{hisRelmony,jdbcType=VARCHAR}, #{orders,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.History">
+    insert into hbms_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="historyId != null">
+        history_id,
+      </if>
+      <if test="hisDate != null">
+        his_date,
+      </if>
+      <if test="hisMoney != null">
+        his_money,
+      </if>
+      <if test="hisDisc != null">
+        his_disc,
+      </if>
+      <if test="hisCoaId != null">
+        his_coa_id,
+      </if>
+      <if test="hisCoaName != null">
+        his_coa_name,
+      </if>
+      <if test="hisPro != null">
+        his_pro,
+      </if>
+      <if test="hisRelmony != null">
+        his_relmony,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="historyId != null">
+        #{historyId,jdbcType=INTEGER},
+      </if>
+      <if test="hisDate != null">
+        #{hisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hisMoney != null">
+        #{hisMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDisc != null">
+        #{hisDisc,jdbcType=INTEGER},
+      </if>
+      <if test="hisCoaId != null">
+        #{hisCoaId,jdbcType=INTEGER},
+      </if>
+      <if test="hisCoaName != null">
+        #{hisCoaName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisPro != null">
+        #{hisPro,jdbcType=INTEGER},
+      </if>
+      <if test="hisRelmony != null">
+        #{hisRelmony,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.History">
+    update hbms_history
+    <set>
+      <if test="hisDate != null">
+        his_date = #{hisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hisMoney != null">
+        his_money = #{hisMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDisc != null">
+        his_disc = #{hisDisc,jdbcType=INTEGER},
+      </if>
+      <if test="hisCoaId != null">
+        his_coa_id = #{hisCoaId,jdbcType=INTEGER},
+      </if>
+      <if test="hisCoaName != null">
+        his_coa_name = #{hisCoaName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisPro != null">
+        his_pro = #{hisPro,jdbcType=INTEGER},
+      </if>
+      <if test="hisRelmony != null">
+        his_relmony = #{hisRelmony,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+    </set>
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.History">
+    update hbms_history
+    set his_date = #{hisDate,jdbcType=TIMESTAMP},
+      his_money = #{hisMoney,jdbcType=VARCHAR},
+      his_disc = #{hisDisc,jdbcType=INTEGER},
+      his_coa_id = #{hisCoaId,jdbcType=INTEGER},
+      his_coa_name = #{hisCoaName,jdbcType=VARCHAR},
+      his_pro = #{hisPro,jdbcType=INTEGER},
+      his_relmony = #{hisRelmony,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER}
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </update>
+</mapper>

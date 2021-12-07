@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.EquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Equipment">
+    <id column="equpment_id" jdbcType="INTEGER" property="equpmentId" />
+    <result column="equ_category_id" jdbcType="INTEGER" property="equCategoryId" />
+    <result column="equ_name" jdbcType="VARCHAR" property="equName" />
+    <result column="equ_sta" jdbcType="VARCHAR" property="equSta" />
+    <result column="equ_repair" jdbcType="INTEGER" property="equRepair" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    equpment_id, equ_category_id, equ_name, equ_sta, equ_repair
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_equipment
+    where equpment_id = #{equpmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_equipment
+    where equpment_id = #{equpmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Equipment">
+    insert into hbms_equipment (equpment_id, equ_category_id, equ_name, 
+      equ_sta, equ_repair)
+    values (#{equpmentId,jdbcType=INTEGER}, #{equCategoryId,jdbcType=INTEGER}, #{equName,jdbcType=VARCHAR}, 
+      #{equSta,jdbcType=VARCHAR}, #{equRepair,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Equipment">
+    insert into hbms_equipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="equpmentId != null">
+        equpment_id,
+      </if>
+      <if test="equCategoryId != null">
+        equ_category_id,
+      </if>
+      <if test="equName != null">
+        equ_name,
+      </if>
+      <if test="equSta != null">
+        equ_sta,
+      </if>
+      <if test="equRepair != null">
+        equ_repair,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="equpmentId != null">
+        #{equpmentId,jdbcType=INTEGER},
+      </if>
+      <if test="equCategoryId != null">
+        #{equCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="equName != null">
+        #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="equSta != null">
+        #{equSta,jdbcType=VARCHAR},
+      </if>
+      <if test="equRepair != null">
+        #{equRepair,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Equipment">
+    update hbms_equipment
+    <set>
+      <if test="equCategoryId != null">
+        equ_category_id = #{equCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="equName != null">
+        equ_name = #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="equSta != null">
+        equ_sta = #{equSta,jdbcType=VARCHAR},
+      </if>
+      <if test="equRepair != null">
+        equ_repair = #{equRepair,jdbcType=INTEGER},
+      </if>
+    </set>
+    where equpment_id = #{equpmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Equipment">
+    update hbms_equipment
+    set equ_category_id = #{equCategoryId,jdbcType=INTEGER},
+      equ_name = #{equName,jdbcType=VARCHAR},
+      equ_sta = #{equSta,jdbcType=VARCHAR},
+      equ_repair = #{equRepair,jdbcType=INTEGER}
+    where equpment_id = #{equpmentId,jdbcType=INTEGER}
+  </update>
+</mapper>

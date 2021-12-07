@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.RepairMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Repair">
+    <id column="repair_id" jdbcType="INTEGER" property="repairId" />
+    <result column="rep_equ_id" jdbcType="INTEGER" property="repEquId" />
+    <result column="rep_mes" jdbcType="VARCHAR" property="repMes" />
+    <result column="rep_cost" jdbcType="VARCHAR" property="repCost" />
+    <result column="rep_date" jdbcType="TIMESTAMP" property="repDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    repair_id, rep_equ_id, rep_mes, rep_cost, rep_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_repair
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_repair
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Repair">
+    insert into hbms_repair (repair_id, rep_equ_id, rep_mes, 
+      rep_cost, rep_date)
+    values (#{repairId,jdbcType=INTEGER}, #{repEquId,jdbcType=INTEGER}, #{repMes,jdbcType=VARCHAR}, 
+      #{repCost,jdbcType=VARCHAR}, #{repDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Repair">
+    insert into hbms_repair
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="repairId != null">
+        repair_id,
+      </if>
+      <if test="repEquId != null">
+        rep_equ_id,
+      </if>
+      <if test="repMes != null">
+        rep_mes,
+      </if>
+      <if test="repCost != null">
+        rep_cost,
+      </if>
+      <if test="repDate != null">
+        rep_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="repairId != null">
+        #{repairId,jdbcType=INTEGER},
+      </if>
+      <if test="repEquId != null">
+        #{repEquId,jdbcType=INTEGER},
+      </if>
+      <if test="repMes != null">
+        #{repMes,jdbcType=VARCHAR},
+      </if>
+      <if test="repCost != null">
+        #{repCost,jdbcType=VARCHAR},
+      </if>
+      <if test="repDate != null">
+        #{repDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Repair">
+    update hbms_repair
+    <set>
+      <if test="repEquId != null">
+        rep_equ_id = #{repEquId,jdbcType=INTEGER},
+      </if>
+      <if test="repMes != null">
+        rep_mes = #{repMes,jdbcType=VARCHAR},
+      </if>
+      <if test="repCost != null">
+        rep_cost = #{repCost,jdbcType=VARCHAR},
+      </if>
+      <if test="repDate != null">
+        rep_date = #{repDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Repair">
+    update hbms_repair
+    set rep_equ_id = #{repEquId,jdbcType=INTEGER},
+      rep_mes = #{repMes,jdbcType=VARCHAR},
+      rep_cost = #{repCost,jdbcType=VARCHAR},
+      rep_date = #{repDate,jdbcType=TIMESTAMP}
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </update>
+</mapper>

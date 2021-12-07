@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.xxxy.hbms.system.mapper.EquipMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.xxxy.hbms.system.domain.Equip">
+    <id column="equp_id" jdbcType="INTEGER" property="equpId" />
+    <result column="equp_name" jdbcType="VARCHAR" property="equpName" />
+    <result column="equp_quantity" jdbcType="INTEGER" property="equpQuantity" />
+    <result column="equp_used" jdbcType="VARCHAR" property="equpUsed" />
+    <result column="equp_unuse" jdbcType="VARCHAR" property="equpUnuse" />
+    <result column="equp_repair" jdbcType="INTEGER" property="equpRepair" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    equp_id, equp_name, equp_quantity, equp_used, equp_unuse, equp_repair, orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hbms_equip
+    where equp_id = #{equpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hbms_equip
+    where equp_id = #{equpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.xxxy.hbms.system.domain.Equip">
+    insert into hbms_equip (equp_id, equp_name, equp_quantity, 
+      equp_used, equp_unuse, equp_repair, 
+      orders)
+    values (#{equpId,jdbcType=INTEGER}, #{equpName,jdbcType=VARCHAR}, #{equpQuantity,jdbcType=INTEGER}, 
+      #{equpUsed,jdbcType=VARCHAR}, #{equpUnuse,jdbcType=VARCHAR}, #{equpRepair,jdbcType=INTEGER}, 
+      #{orders,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.xxxy.hbms.system.domain.Equip">
+    insert into hbms_equip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="equpId != null">
+        equp_id,
+      </if>
+      <if test="equpName != null">
+        equp_name,
+      </if>
+      <if test="equpQuantity != null">
+        equp_quantity,
+      </if>
+      <if test="equpUsed != null">
+        equp_used,
+      </if>
+      <if test="equpUnuse != null">
+        equp_unuse,
+      </if>
+      <if test="equpRepair != null">
+        equp_repair,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="equpId != null">
+        #{equpId,jdbcType=INTEGER},
+      </if>
+      <if test="equpName != null">
+        #{equpName,jdbcType=VARCHAR},
+      </if>
+      <if test="equpQuantity != null">
+        #{equpQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="equpUsed != null">
+        #{equpUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="equpUnuse != null">
+        #{equpUnuse,jdbcType=VARCHAR},
+      </if>
+      <if test="equpRepair != null">
+        #{equpRepair,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.xxxy.hbms.system.domain.Equip">
+    update hbms_equip
+    <set>
+      <if test="equpName != null">
+        equp_name = #{equpName,jdbcType=VARCHAR},
+      </if>
+      <if test="equpQuantity != null">
+        equp_quantity = #{equpQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="equpUsed != null">
+        equp_used = #{equpUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="equpUnuse != null">
+        equp_unuse = #{equpUnuse,jdbcType=VARCHAR},
+      </if>
+      <if test="equpRepair != null">
+        equp_repair = #{equpRepair,jdbcType=INTEGER},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+    </set>
+    where equp_id = #{equpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.xxxy.hbms.system.domain.Equip">
+    update hbms_equip
+    set equp_name = #{equpName,jdbcType=VARCHAR},
+      equp_quantity = #{equpQuantity,jdbcType=INTEGER},
+      equp_used = #{equpUsed,jdbcType=VARCHAR},
+      equp_unuse = #{equpUnuse,jdbcType=VARCHAR},
+      equp_repair = #{equpRepair,jdbcType=INTEGER},
+      orders = #{orders,jdbcType=INTEGER}
+    where equp_id = #{equpId,jdbcType=INTEGER}
+  </update>
+</mapper>

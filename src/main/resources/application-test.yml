@@ -1,0 +1,42 @@
+xxxy:
+  name: xxxy-hbms
+  version: 0.0.3
+  description: 滑冰场管理系统(测试环境)
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+
+  # druid 数据库线程池
+  # 指定数据源类型
+  datasource:
+    # 数据源基本配置
+    url: jdbc:mysql://localhost:3306/hbms
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    # Druid 数据源设置
+    initialSize: 10
+    minIdle: 5
+    maxActive: 30
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开 PSCache，并且指定每个连接上 PSCache 的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的 filters，去掉后监控界面 SQL 无法统计，'wall' 用于防火墙
+    filters: stat,wall,slf4j
